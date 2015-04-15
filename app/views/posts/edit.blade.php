@@ -6,17 +6,13 @@
 
 @section('body')
         <h1>ユーザー修正画面</h1><br>
-<!--            {{ Form::open(['url'=>['posts.edited',$post->id],'method'=>'PUT'])}}-->
-            
-            @foreach($posts as $post)
-<!--            {{var_dump($post)}}-->
-            {{ Form::label('fullname','名前')}}<br>
-            {{ Form::text('fullname', $post->Fullname)}}<br><br>
-            
-            {{ Form::label('email','メールアドレス')}}<br>
-            {{ Form::text('email', $post->Email)}}<br>
-            @endforeach
-            {{ Form::submit('修正')}}
+        {{ Form::open(['url'=>['posts/user_list',$user->ID],'method'=>'post'])}}
+<!--            {{var_dump($user)}}-->
+                {{ Form::label('fullname','名前')}}<br>
+                {{ Form::text('fullname', $user->Fullname)}}<br><br>
 
-            {{ Form::close()}}
+                {{ Form::label('email','メールアドレス')}}<br>
+                {{ Form::text('email', $user->Email)}}<br><br>
+                {{ Form::submit('更新')}}
+        {{ Form::close()}}
 @stop

@@ -32,22 +32,35 @@
             return View::make('posts.user_list')->with('posts',$posts);
         }
         function edit($id){
-            $posts = DB::table('project1')->where ('id',$id)->first();
-            return View::make('posts.edit')->with('post',$posts);
+            $user = User::find($id);
+            return View::make('posts.edit')->with('user',$user);
+//            $posts = DB::table('project1')->where ('id',$id)->first();
+//            return View::make('posts.edit')->with('post',$posts);
         }
-        function destroy($postid){
-            DB::table('project1')->where('id', $postid)->delete();
-            return Redirect::route('posts.index');
+        function update($id){
+            DB::table('project1')->where('id',$id)->update(['fullname'=>Input::get('fullname'),'email'=>Input::get('email')]);
+            $posts = DB::table('project1')->get();
+            return View::make('posts.user_list')->with('posts',$posts);
+//            return Redirect::route('posts.edited',[$id]);
+        }
+        function delete($id){
+//            $user = User::find($id);
+//            $user->delete();
+            DB::table('project1')->where('id', $id)->delete();
+            $posts = DB::table('project1')->get();
+            return View::make('posts.user_list')->with('posts',$posts);
+//            return Redirect::route('posts.user_list');
         }
         function search(){
-            $search = Request::get('search');
+            $search = Input::get('search');
+//            $results = DB::table('project1')->where('fullname','LIKE','%'.$search.'%')->orWhere('email', 'LIKE','%'.$search.'%')->get();
             var_dump($search);
 //            if($search){
-//                $posts = DB::table('project1')->where('Fullname','LIKE','%$search%')->get();
+//                $posts = DB::table('project1')->where('fullname','LIKE','%$search%')->get();
 //            }else{
-//                $posts = DB::table('project1')->get();
+//                $posts = DB::table('project1')->all();
 //            }
-//            return View::make('posts.search')->with('posts',$posts);
+            return View::make('posts.search')->with('search',$search);
 
         }
         

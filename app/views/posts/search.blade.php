@@ -12,18 +12,14 @@
                 <td>修正</td>
                 <td>削除</td>
             </tr>
-<!--             @foreach($posts as $post)  
+<!--             @foreach($results as $result)  -->
             <tr>
-                {{var_dump($post) }}
-                <td>{{ $post->Fullname}}</td>
-                <td>{{ $post->Email}}</td>
-                <td>{{ Form::open(['url'=>'../edit','method'=>'get'])}}
-                        {{ Form::button('修正')}}
-                    {{ Form::close()}}</td>
-                <td>{{ Form::open(['url'=>'../destroy','method'=>'delete'])}}
-                        {{ Form::button('修正')}}
-                    {{ Form::close()}}</td>
-             @endforeach-->
+                var_dump($search) 
+                <td>{{ $result->Fullname}}</td>
+                <td>{{ $result->Email}}</td>
+<!--                <td><a href="./../edit/{{ $result->ID}}"><input type="submit" value="修正"></a></td>
+                <td><a href="./../delete/{{ $result->ID}}"><input type="submit" value="削除"></a></td>-->
+<!--             @endforeach-->
         </table>
     
         <br><br>

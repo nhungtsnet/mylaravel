@@ -25,7 +25,9 @@ Route::post('posts','PostController@register');
 Route::get('posts/user_list','PostController@user_list');
 //ユーザー情報変更
 Route::get('posts/edit/{id}','PostController@edit');
+//update display
+Route::post('posts/user_list/{id}','PostController@update');
 //削除画面
-Route::get('posts/destroy','PostController@destroy');
+Route::get('posts/delete/{id}','PostController@delete');
 //検索画面
 Route::get('posts/search','PostController@search');

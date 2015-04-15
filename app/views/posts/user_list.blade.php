@@ -23,15 +23,11 @@
 <!--                {{var_dump($post) }}-->
                 <td>{{ $post->Fullname}}</td>
                 <td>{{ $post->Email}}</td>
-                <td>{{ Form::open(['url'=>'../edit','method'=>'get'])}}
-                        {{ Form::button('修正')}}
-                    {{ Form::close()}}</td>
-                <td>{{ Form::open(['url'=>'../destroy','method'=>'delete'])}}
-                        {{ Form::button('修正')}}
-                    {{ Form::close()}}</td>
+                <td><a href="http://localhost/mylaravel/posts/edit/{{ $post->ID}}"><input type="submit" value="修正"></a></td>
+                <td><a href="http://localhost/mylaravel/posts/delete/{{$post->ID}}" onclick="if(!confirm('削除して宜しいでしょうか?')){return false;};" title="Delete this Item"><input type="submit" value="削除"></a></td>
              @endforeach
         </table>
     
         <br><br>
-        <a href="./index">TOPへ戻る</a>
+        <a href="http://localhost/mylaravel/posts/index">TOPへ戻る</a>
 @stop
