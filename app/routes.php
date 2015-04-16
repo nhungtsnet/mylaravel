@@ -30,4 +30,4 @@ Route::post('posts/user_list/{id}','PostController@update');
 //削除画面
 Route::get('posts/delete/{id}','PostController@delete');
 //検索画面
-Route::get('posts/search','PostController@search');
+Route::post('posts/search','PostController@search');

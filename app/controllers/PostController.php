@@ -7,17 +7,13 @@
             return View::make('posts.form');
         }
         function register(){
-//            $data = Input::all();
-//            $rules = array(
-//                'fullname' => 'required',
-//                'email' => 'required\email\unique:users',
-//                'password' => 'required\min:4'
-//            );
-//            $validator = Validator::make($data,$rules);
+//            $messages = array('fullname.required'=>'名前を入力して下さい！','email.required'=>'メールを入力して下さい！','password.required'=>'パスワードを入力して下さい！');
+//            $rules = array('fullname' => 'required','email' => 'required|email|unique:users','password' => 'required|min:4');
+//            $validator = Validator::make(Input::all(),$rules,$messages);
 //            if($validator -> fails()){
-//                return Redirect::to('posts.form')->withErrors($validator)->withInput();
+//                return Redirect::to('posts.form')->with('message','登録できません！');
 //            }
-//            return View::make('posts.register'); 
+         
             DB::table('project1')->insert([
                 'fullname'=>Input::get('fullname'),
                 'email'=>Input::get('email'),
@@ -26,7 +22,9 @@
                 'comment'=>Input::get('comment')
             ]);
             return View::make('posts.register');   
-        }
+            }
+        
+        
         function user_list(){
             $posts = DB::table('project1')->get();
             return View::make('posts.user_list')->with('posts',$posts);
@@ -53,14 +51,8 @@
         }
         function search(){
             $search = Input::get('search');
-//            $results = DB::table('project1')->where('fullname','LIKE','%'.$search.'%')->orWhere('email', 'LIKE','%'.$search.'%')->get();
-            var_dump($search);
-//            if($search){
-//                $posts = DB::table('project1')->where('fullname','LIKE','%$search%')->get();
-//            }else{
-//                $posts = DB::table('project1')->all();
-//            }
-            return View::make('posts.search')->with('search',$search);
+            $results = User::where('fullname','LIKE',"%$search%")->orWhere('email', 'LIKE',"%$search%")->get();
+            return View::make('posts.search')->with('results',$results);
 
         }
         
